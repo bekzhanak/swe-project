@@ -121,17 +121,13 @@ class Token(BaseModel):
     token_type: str
 
 
-class UserResponse(BaseModel):
-    id: int
-    email: str
-    is_admin: bool
-
-    class Config:
-        from_attributes = True
-
-
 class PaymentRequest(BaseModel):
     order_id: int
     amount: float
     payment_method: str
     payment_reference: Optional[str] = None
+
+
+class MoneyRequest(BaseModel):
+    id: int
+    amount: float
