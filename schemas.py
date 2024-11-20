@@ -24,6 +24,7 @@ class UserResponse(UserBase):
     is_admin: bool
     is_buyer: bool
     is_farmer: bool
+    is_active: bool
 
     class Config:
         from_attributes = True
@@ -35,10 +36,18 @@ class FarmerCreate(UserCreate):
     farm_size: float
 
 
+class FarmResponse(BaseModel):
+    id: int
+    address: str
+    size: int
+
+    class Config:
+        from_attributes = True
+
+
 class FarmerResponse(BaseModel):
     id: int
-    farm_address: str
-    farm_size: float
+    farms: List[FarmResponse]
     user: UserResponse
 
     class Config:

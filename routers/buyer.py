@@ -41,10 +41,9 @@ def browse_products(db: Session = Depends(get_db)):
     return get_available_products(db)
 
 
-@router.get("/products/{product_id}", response_model=ProductResponse)
+@router.get("/products/{product_id}")
 def get_product_endpoint(product_id: int, db: Session = Depends(get_db)):
     return get_product_by_id(db, product_id)
-
 
 
 @router.get("/products/search")

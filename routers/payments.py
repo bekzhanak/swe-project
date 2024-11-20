@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
 from database import get_db
-from models import Payment, Order, Delivery, Buyer, User
+from models import Payment, Order, Delivery, Buyer, User, Farmer, OrderItem, Product
 from schemas import PaymentRequest, MoneyRequest
 from datetime import datetime
 

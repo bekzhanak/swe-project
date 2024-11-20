@@ -16,6 +16,7 @@ class User(Base):
     is_buyer = Column(Boolean, default=False)
     is_farmer = Column(Boolean, default=False)
     balance = Column(Float, nullable=False, default=0.0)
+    is_active = Column(Boolean, default=True)
 
 
 class Farmer(Base):

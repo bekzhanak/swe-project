@@ -1,22 +1,6 @@
 version: "3.8"
 
 services:
-  fastapi:
-    build:
-      context: .
-    container_name: fastapi_app
-    command: ["/wait_for_db.sh", "&&", "sh", "-c", "python create_admin.py && uvicorn main:app --host 0.0.0.0 --port 8000 --reload"]
-    ports:
-      - "8000:8000"
-    depends_on:
-      - db
-    environment:
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/swe_project
-      - POSTGRES_HOST=db
-      - POSTGRES_PORT=5432
-    volumes:
-      - .:/app
-
   db:
     image: postgres:15
     container_name: postgres_db
@@ -29,6 +13,23 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
+
+  fastapi:
+    build:
+      context: .
+    container_name: fastapi_app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/swe_project
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+    volumes:
+      - .:/app
+
 
 volumes:
   postgres_data:
